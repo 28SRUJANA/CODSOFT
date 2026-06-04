@@ -1,887 +1,235 @@
-const questionText =
-document.getElementById("question");
+const movies = [
+{
+title:"The Dark Knight",
+genre:"Action",
+rating:"9.0",
+image:"https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+description:"Batman faces Joker in Gotham."
+},
+{
+title:"Avengers Endgame",
+genre:"Action",
+rating:"8.8",
+image:"https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+description:"Marvel heroes unite."
+},
+{
+title:"Interstellar",
+genre:"Sci-Fi",
+rating:"8.7",
+image:"https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+description:"Journey through space and time."
+},
+{
+title:"Inception",
+genre:"Sci-Fi",
+rating:"8.8",
+image:"https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg",
+description:"Dream inside a dream."
+},
+{
+title:"Joker",
+genre:"Drama",
+rating:"8.5",
+image:"https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+description:"Origin of Gotham's villain."
+},
+{
+title:"Avatar",
+genre:"Sci-Fi",
+rating:"7.9",
+image:"https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg",
+description:"A marine explores Pandora."
+},
+{
+title:"John Wick",
+genre:"Action",
+rating:"8.0",
+image:"https://image.tmdb.org/t/p/w500/fZPSd91yGE9fCcCe6OoQr6E3Bev.jpg",
+description:"A retired assassin seeks revenge."
+},
+{
+title:"Titanic",
+genre:"Drama",
+rating:"7.9",
+image:"https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg",
+description:"A tragic love story aboard Titanic."
+},
+{
+title:"Shutter Island",
+genre:"Thriller",
+rating:"8.2",
+image:"https://image.tmdb.org/t/p/w500/4GDy0PHYX3VRXUtwK5ysFbg3kEx.jpg",
+description:"A mystery unfolds on an island."
+},
+{
+title:"Gone Girl",
+genre:"Thriller",
+rating:"8.1",
+image:"https://image.tmdb.org/t/p/w500/ts996lKsxvjkO2yiYG0ht4qAicO.jpg",
+description:"A missing wife mystery."
+},
+{
+title:"Forrest Gump",
+genre:"Drama",
+rating:"8.8",
+image:"https://image.tmdb.org/t/p/w500/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg",
+description:"The extraordinary life of Forrest Gump."
+},
+{
+title:"Fight Club",
+genre:"Drama",
+rating:"8.8",
+image:"https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg",
+description:"An underground fight club changes lives."
+},
+{
+title:"Top Gun Maverick",
+genre:"Action",
+rating:"8.3",
+image:"https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg",
+description:"A legendary pilot returns."
+},
+{
+title:"Parasite",
+genre:"Thriller",
+rating:"8.5",
+image:"https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+description:"A poor family infiltrates a wealthy home."
+},
+{
+title:"Oppenheimer",
+genre:"Drama",
+rating:"8.5",
+image:"https://upload.wikimedia.org/wikipedia/en/4/4a/Oppenheimer_%28film%29.jpg",
+description:"The story of J. Robert Oppenheimer and the atomic bomb."
+},
 
-const optionButtons =
-document.querySelectorAll(".option");
+{
+title:"Spider-Man: No Way Home",
+genre:"Action",
+rating:"8.2",
+image:"https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg",
+description:"Spider-Man faces villains from other universes."
+},
+{
+title:"A Quiet Place",
+genre:"Thriller",
+rating:"7.5",
+image:"https://upload.wikimedia.org/wikipedia/en/a/a0/A_Quiet_Place_film_poster.png",
+description:"A family survives in silence from deadly creatures."
+},
 
-const quizResult =
-document.getElementById("quizResult");
+{
+title:"Toy Story 4",
+genre:"Comedy",
+rating:"7.7",
+image:"https://upload.wikimedia.org/wikipedia/en/4/4c/Toy_Story_4_poster.jpg",
+description:"Woody and friends embark on a new adventure."
+},
 
-const quizPopup =
-document.getElementById("quizPopup");
+{
+title:"The Super Mario Bros Movie",
+genre:"Comedy",
+rating:"7.1",
+image:"https://upload.wikimedia.org/wikipedia/en/4/44/The_Super_Mario_Bros._Movie_poster.jpg",
+description:"Mario and Luigi save the Mushroom Kingdom."
+},
 
-const popup =
-document.getElementById("gamePopup");
+{
+title:"Dune",
+genre:"Sci-Fi",
+rating:"8.0",
+image:"https://upload.wikimedia.org/wikipedia/en/8/8e/Dune_%282021_film%29.jpg",
+description:"A young noble fights for the future of Arrakis."
+},
+{
+title:"La La Land",
+genre:"Drama",
+rating:"8.0",
+image:"https://upload.wikimedia.org/wikipedia/en/a/ab/La_La_Land_%28film%29.png",
+description:"A musician and actress chase their dreams in Los Angeles."
+},
 
-const popupTitle =
-document.getElementById("popupTitle");
+{
+title:"Extraction",
+genre:"Action",
+rating:"6.8",
+image:"https://upload.wikimedia.org/wikipedia/en/8/89/Extraction_%282020_film%29.png",
+description:"A mercenary undertakes a dangerous rescue mission."
+},
 
-const popupMessage =
-document.getElementById("popupMessage");
+{
+title:"Black Panther",
+genre:"Action",
+rating:"7.3",
+image:"https://upload.wikimedia.org/wikipedia/en/d/d6/Black_Panther_%28film%29_poster.jpg",
+description:"The king of Wakanda defends his nation."
+},
 
-const popupBtn =
-document.getElementById("popupBtn");
-
-const bgMusic =
-document.getElementById("bgMusic");
-
-const cells =
-document.querySelectorAll(".cell");
-
-const statusText =
-document.getElementById("status");
-
-const xBtn =
-document.getElementById("xBtn");
-
-const oBtn =
-document.getElementById("oBtn");
-
-const easyBtn =
-document.getElementById("easyBtn");
-
-const mediumBtn =
-document.getElementById("mediumBtn");
-
-const hardBtn =
-document.getElementById("hardBtn");
-
-const playerScoreText =
-document.getElementById("playerScore");
-
-const aiScoreText =
-document.getElementById("aiScore");
-
-const drawScoreText =
-document.getElementById("drawScore");
-
-let difficulty = "easy";
-
-let playerScore = 0;
-
-let aiScore = 0;
-
-let drawScore = 0;
-
-let currentQuestion;
-
-let board =
-["","","","","","","","",""];
-
-let human = "X";
-
-let ai = "O";
-
-let playing = true;
-
-const patterns = [
-
-[0,1,2],
-[3,4,5],
-[6,7,8],
-
-[0,3,6],
-[1,4,7],
-[2,5,8],
-
-[0,4,8],
-[2,4,6]
-
+{
+title:"Knives Out",
+genre:"Thriller",
+rating:"7.9",
+image:"https://upload.wikimedia.org/wikipedia/en/1/1f/Knives_Out_poster.jpeg",
+description:"A detective investigates a mysterious death."
+}
 ];
 
-window.onload = ()=>{
+const movieContainer =
+document.getElementById("movieContainer");
 
-    bgMusic.volume = 1;
+function displayMovies(movieList){
 
-    document.body.addEventListener(
-    "click",
-    ()=>{
+movieContainer.innerHTML="";
 
-        bgMusic.play();
+movieList.forEach(movie=>{
 
-    },
-    {once:true}
-    );
-};
+movieContainer.innerHTML += `
+<div class="card">
 
-function loadQuestion(){
+<img src="${movie.image}" alt="">
 
-    const categories =
-    Object.keys(questions);
+<div class="card-content">
 
-    const randomCategory =
-    categories[
-        Math.floor(
-            Math.random() *
-            categories.length
-        )
-    ];
+<h3>${movie.title}</h3>
 
-    const categoryQuestions =
-    questions[randomCategory];
+<p>${movie.description}</p>
 
-    currentQuestion =
-    categoryQuestions[
-        Math.floor(
-            Math.random() *
-            categoryQuestions.length
-        )
-    ];
+<p><b>Genre:</b> ${movie.genre}</p>
 
-    questionText.innerHTML =
+<p class="rating">⭐ ${movie.rating}</p>
 
-    `📚 ${randomCategory.toUpperCase()}
-    <br><br>
-    ${currentQuestion.question}`;
+</div>
 
-    quizResult.innerHTML = "";
-
-    optionButtons.forEach((btn,index)=>{
-
-        btn.innerHTML =
-        currentQuestion.options[index];
-
-        btn.onclick = ()=>{
-
-            if(
-                btn.innerHTML ===
-                currentQuestion.answer
-            ){
-
-                quizResult.innerHTML =
-                "🎉 Correct Answer!";
-
-                setTimeout(()=>{
-
-                    quizPopup.style.display =
-                    "none";
-
-                },1000);
-
-            }else{
-
-                quizResult.innerHTML =
-
-                `❌ Correct Answer:
-                ${currentQuestion.answer}`;
-            }
-        };
-    });
-}
-
-loadQuestion();
-
-function setDifficulty(button){
-
-    document
-    .querySelectorAll(".difficulty")
-    .forEach(btn=>{
-
-        btn.classList.remove(
-        "active-level"
-        );
-    });
-
-    button.classList.add(
-    "active-level"
-    );
-}
-
-easyBtn.onclick = ()=>{
-
-    difficulty = "easy";
-
-    setDifficulty(easyBtn);
-
-    resetGame();
-
-    if(human === "O"){
-
-        setTimeout(aiMove,500);
-    }
-};
-
-mediumBtn.onclick = ()=>{
-
-    difficulty = "medium";
-
-    setDifficulty(mediumBtn);
-
-    resetGame();
-
-    if(human === "O"){
-
-        setTimeout(aiMove,500);
-    }
-};
-
-hardBtn.onclick = ()=>{
-
-    difficulty = "hard";
-
-    setDifficulty(hardBtn);
-
-    resetGame();
-
-    if(human === "O"){
-
-        setTimeout(aiMove,500);
-    }
-};
-
-xBtn.onclick = ()=>{
-
-    human = "X";
-
-    ai = "O";
-
-    xBtn.classList.add("active");
-
-    oBtn.classList.remove("active");
-
-    resetGame();
-};
-
-oBtn.onclick = ()=>{
-
-    human = "O";
-
-    ai = "X";
-
-    oBtn.classList.add("active");
-
-    xBtn.classList.remove("active");
-
-    resetGame();
-
-    setTimeout(aiMove,500);
-};
-
-cells.forEach(cell=>{
-
-    cell.addEventListener(
-    "click",
-    playerMove
-    );
+</div>
+`;
 });
-
-function playerMove(e){
-
-    const index =
-    e.target.dataset.index;
-
-    if(
-        board[index] !== "" ||
-        !playing
-    ){
-        return;
-    }
-
-    makeMove(index,human);
-
-    if(
-        checkWinner(board,human)
-    ){
-
-        finishGame(human);
-
-        return;
-    }
-
-    if(checkDraw()){
-
-        finishDraw();
-
-        return;
-    }
-
-    aiMove();
 }
 
-function aiMove(){
+displayMovies(movies);
 
-    if(!playing) return;
+function recommend(genre){
 
-    statusText.innerHTML =
-    "🤖 AI Thinking...";
+const recommendations =
+movies.filter(movie => movie.genre === genre);
 
-    setTimeout(()=>{
-
-        let move;
-
-        if(difficulty === "easy"){
-
-            move = randomMove();
-
-        }else if(
-            difficulty === "medium"
-        ){
-
-            if(Math.random() < 0.5){
-
-                move = randomMove();
-
-            }else{
-
-                move =
-                minimax(board,ai).index;
-            }
-
-        }else{
-
-            move =
-            minimax(board,ai).index;
-        }
-
-        makeMove(move,ai);
-
-        if(
-            checkWinner(board,ai)
-        ){
-
-            finishGame(ai);
-
-            return;
-        }
-
-        if(checkDraw()){
-
-            finishDraw();
-
-            return;
-        }
-
-        statusText.innerHTML =
-        "🎯 Your Turn";
-
-    },700);
+displayMovies(recommendations);
 }
 
-function randomMove(){
+document
+.getElementById("search")
+.addEventListener("keyup", function(){
 
-    let empty =
+const searchValue =
+this.value.toLowerCase();
 
-    board
-    .map((value,index)=>
+const filtered =
+movies.filter(movie =>
+movie.title.toLowerCase()
+.includes(searchValue)
+);
 
-    value === ""
-    ? index
-    : null)
+displayMovies(filtered);
 
-    .filter(value=>
-    value !== null);
-
-    return empty[
-        Math.floor(
-            Math.random() *
-            empty.length
-        )
-    ];
-}
-
-function makeMove(index,player){
-
-    board[index] = player;
-
-    cells[index].textContent =
-    player;
-
-    cells[index].style.color =
-
-    player === "X"
-    ? "#00c6ff"
-    : "#ff4d4d";
-
-    cells[index].style.transform =
-    "scale(1.15)";
-
-    setTimeout(()=>{
-
-        cells[index].style.transform =
-        "scale(1)";
-
-    },200);
-}
-
-function checkWinner(
-currentBoard,
-player
-){
-
-    return patterns.some(pattern=>{
-
-        return pattern.every(index=>{
-
-            return (
-                currentBoard[index]
-                === player
-            );
-        });
-    });
-}
-
-function checkDraw(){
-
-    return board.every(cell=>
-    cell !== "");
-}
-
-function finishDraw(){
-
-    playing = false;
-
-    drawScore++;
-
-    drawScoreText.innerHTML =
-    drawScore;
-
-    popup.style.display =
-    "flex";
-
-    popupTitle.innerHTML =
-    "🤝 MATCH DRAW";
-
-    popupMessage.innerHTML =
-    "Amazing Match 🔥";
-
-    popupBtn.innerHTML =
-    "Play Again";
-
-    popupBtn.onclick = ()=>{
-
-        popup.style.display =
-        "none";
-
-        resetGame();
-
-        quizPopup.style.display =
-        "flex";
-
-        loadQuestion();
-    };
-}
-
-function finishGame(player){
-
-    playing = false;
-
-    patterns.forEach(pattern=>{
-
-        if(
-            pattern.every(index=>
-            board[index] === player)
-        ){
-
-            pattern.forEach(i=>{
-
-                cells[i]
-                .classList
-                .add("winner");
-
-                if(player === human){
-
-                    createBlast(
-                    cells[i]
-                    );
-                }
-            });
-        }
-    });
-
-    popup.style.display =
-    "flex";
-
-    if(player === human){
-
-        playerScore++;
-
-        playerScoreText.innerHTML =
-        playerScore;
-
-        popupTitle.innerHTML =
-        "🎉 YOU WON!";
-
-        if(difficulty === "easy"){
-
-            popupMessage.innerHTML =
-            "🔥 Medium Level Unlocked!";
-
-            popupBtn.innerHTML =
-            "Play Medium Level";
-
-            popupBtn.onclick = ()=>{
-
-                popup.style.display =
-                "none";
-
-                difficulty =
-                "medium";
-
-                setDifficulty(
-                mediumBtn
-                );
-
-                resetGame();
-
-                quizPopup.style.display =
-                "flex";
-
-                loadQuestion();
-            };
-
-        }else if(
-            difficulty === "medium"
-        ){
-
-            popupMessage.innerHTML =
-            "🚀 Hard Level Unlocked!";
-
-            popupBtn.innerHTML =
-            "Play Hard Level";
-
-            popupBtn.onclick = ()=>{
-
-                popup.style.display =
-                "none";
-
-                difficulty =
-                "hard";
-
-                setDifficulty(
-                hardBtn
-                );
-
-                resetGame();
-
-                quizPopup.style.display =
-                "flex";
-
-                loadQuestion();
-            };
-
-        }else{
-
-            popupMessage.innerHTML =
-            "🏆 You Beat Hard Mode!";
-
-            popupBtn.innerHTML =
-            "Play Again";
-
-            popupBtn.onclick = ()=>{
-
-                popup.style.display =
-                "none";
-
-                resetGame();
-
-                quizPopup.style.display =
-                "flex";
-
-                loadQuestion();
-            };
-        }
-
-    }else{
-
-        aiScore++;
-
-        aiScoreText.innerHTML =
-        aiScore;
-
-        const quotes = [
-
-        "💪 Never Give Up!",
-
-        "🌟 Practice Makes Perfect!",
-
-        "🔥 You Can Win Next Time!",
-
-        "🚀 Keep Trying Superstar!",
-
-        "😊 Champions Never Quit!"
-
-        ];
-
-        popupTitle.innerHTML =
-        "😔 YOU LOST";
-
-        popupMessage.innerHTML =
-
-        quotes[
-            Math.floor(
-                Math.random() *
-                quotes.length
-            )
-        ];
-
-        popupBtn.innerHTML =
-        "Try Again";
-
-        popupBtn.onclick = ()=>{
-
-            popup.style.display =
-            "none";
-
-            resetGame();
-
-            quizPopup.style.display =
-            "flex";
-
-            loadQuestion();
-        };
-    }
-}
-
-function createBlast(cell){
-
-    const rect =
-    cell.getBoundingClientRect();
-
-    const centerX =
-    rect.left + rect.width / 2;
-
-    const centerY =
-    rect.top + rect.height / 2;
-
-    const colors = [
-
-    "#ff0",
-    "#00f260",
-    "#00c6ff",
-    "#ff0080",
-    "#ff5722",
-    "#ffffff",
-    "#7c4dff"
-
-    ];
-
-    for(let i=0;i<220;i++){
-
-        const blast =
-        document.createElement("div");
-
-        blast.classList.add("blast");
-
-        blast.style.left =
-        `${centerX}px`;
-
-        blast.style.top =
-        `${centerY}px`;
-
-        blast.style.background =
-
-        colors[
-            Math.floor(
-                Math.random() *
-                colors.length
-            )
-        ];
-
-        const angle =
-        Math.random() *
-        Math.PI * 2;
-
-        const distance =
-        Math.random() * 1000;
-
-        const x =
-        Math.cos(angle) * distance;
-
-        const y =
-        Math.sin(angle) * distance;
-
-        blast.style.setProperty(
-        "--x",
-        `${x}px`
-        );
-
-        blast.style.setProperty(
-        "--y",
-        `${y}px`
-        );
-
-        const size =
-        Math.random() * 16 + 6;
-
-        blast.style.width =
-        `${size}px`;
-
-        blast.style.height =
-        `${size}px`;
-
-        document.body.appendChild(
-        blast
-        );
-
-        setTimeout(()=>{
-
-            blast.remove();
-
-        },2000);
-    }
-}
-
-function minimax(newBoard,player){
-
-    let emptySpots =
-
-    newBoard
-    .map((value,index)=>
-
-    value === ""
-    ? index
-    : null)
-
-    .filter(value=>
-    value !== null);
-
-    if(
-        checkWinner(
-        newBoard,
-        human
-        )
-    ){
-
-        return {score:-10};
-    }
-
-    if(
-        checkWinner(
-        newBoard,
-        ai
-        )
-    ){
-
-        return {score:10};
-    }
-
-    if(
-        emptySpots.length === 0
-    ){
-
-        return {score:0};
-    }
-
-    let moves = [];
-
-    for(
-        let i=0;
-        i<emptySpots.length;
-        i++
-    ){
-
-        let move = {};
-
-        move.index =
-        emptySpots[i];
-
-        newBoard[
-        emptySpots[i]
-        ] = player;
-
-        if(player === ai){
-
-            move.score =
-            minimax(
-            newBoard,
-            human
-            ).score;
-
-        }else{
-
-            move.score =
-            minimax(
-            newBoard,
-            ai
-            ).score;
-        }
-
-        newBoard[
-        emptySpots[i]
-        ] = "";
-
-        moves.push(move);
-    }
-
-    let bestMove;
-
-    if(player === ai){
-
-        let bestScore =
-        -Infinity;
-
-        for(
-            let i=0;
-            i<moves.length;
-            i++
-        ){
-
-            if(
-                moves[i].score >
-                bestScore
-            ){
-
-                bestScore =
-                moves[i].score;
-
-                bestMove = i;
-            }
-        }
-
-    }else{
-
-        let bestScore =
-        Infinity;
-
-        for(
-            let i=0;
-            i<moves.length;
-            i++
-        ){
-
-            if(
-                moves[i].score <
-                bestScore
-            ){
-
-                bestScore =
-                moves[i].score;
-
-                bestMove = i;
-            }
-        }
-    }
-
-    return moves[bestMove];
-}
-
-function resetGame(){
-
-    board =
-    ["","","","","","","","",""];
-
-    playing = true;
-
-    popup.style.display =
-    "none";
-
-    cells.forEach(cell=>{
-
-        cell.textContent = "";
-
-        cell.classList.remove(
-        "winner"
-        );
-    });
-
-    statusText.innerHTML =
-
-    human === "X"
-    ? "🎯 Your Turn"
-    : "🤖 AI Turn";
-
-    if(human === "O"){
-
-        setTimeout(aiMove,500);
-    }
-}
+});

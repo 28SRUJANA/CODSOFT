@@ -1,218 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
-
-    <title>
-        AI Tic Tac Toe
-    </title>
-
-    <link rel="stylesheet"
-    href="style.css">
-
-    <link href=
-    "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieFlix Recommendation System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <audio id="bgMusic" autoplay loop>
+    <header>
+        <h1>🎬 MovieFlix</h1>
 
-    <source
-    src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-    type="audio/mpeg">
-
-</audio>
-    <div class="container">
-
-        <h1 class="title">
-            AI TIC TAC TOE
-        </h1>
-
-        <p class="tagline">
-            Fun Learning Game For Kids 🎮
-        </p>
-
-        <div class="top-section">
-
-            <div class="score-box">
-
-                🧑 Player :
-                <span id="playerScore">
-                    0
-                </span>
-
-            </div>
-
-            <div class="score-box">
-
-                🤖 AI :
-                <span id="aiScore">
-                    0
-                </span>
-
-            </div>
-
-            <div class="score-box">
-
-                🤝 Draw :
-                <span id="drawScore">
-                    0
-                </span>
-
-            </div>
-
+        <div class="search-box">
+            <input
+                type="text"
+                id="search"
+                placeholder="Search your favorite movies..."
+            >
         </div>
+    </header>
 
-        <div class="difficulty-box">
-
-            <button
-            class="difficulty active-level"
-            id="easyBtn">
-
-                Easy
-
-            </button>
-
-            <button
-            class="difficulty"
-            id="mediumBtn">
-
-                Medium
-
-            </button>
-
-            <button
-            class="difficulty"
-            id="hardBtn">
-
-                Impossible
-
-            </button>
-
+    <section class="hero">
+        <div class="overlay">
+            <h2>Unlimited Movies, TV Shows & More</h2>
+            <p>Discover movies based on your interests.</p>
         </div>
+    </section>
 
-        <p class="select-text">
+    <section class="genres">
+        <button onclick="recommend('Action')">🔥 Action</button>
+        <button onclick="recommend('Comedy')">😂 Comedy</button>
+        <button onclick="recommend('Sci-Fi')">🚀 Sci-Fi</button>
+        <button onclick="recommend('Drama')">🎭 Drama</button>
+        <button onclick="recommend('Thriller')">😱 Thriller</button>
+    </section>
 
-            Choose Your Symbol
+    <section class="title-section">
+        <h2>Recommended For You</h2>
+    </section>
 
-        </p>
-
-        <div class="symbols">
-
-            <button
-            id="xBtn"
-            class="symbol-btn active">
-
-                X
-
-            </button>
-
-            <button
-            id="oBtn"
-            class="symbol-btn">
-
-                O
-
-            </button>
-
-        </div>
-
-        <div class="status"
-        id="status">
-
-            🎯 Your Turn
-
-        </div>
-
-        <div class="board">
-
-            <div class="cell"
-            data-index="0"></div>
-
-            <div class="cell"
-            data-index="1"></div>
-
-            <div class="cell"
-            data-index="2"></div>
-
-            <div class="cell"
-            data-index="3"></div>
-
-            <div class="cell"
-            data-index="4"></div>
-
-            <div class="cell"
-            data-index="5"></div>
-
-            <div class="cell"
-            data-index="6"></div>
-
-            <div class="cell"
-            data-index="7"></div>
-
-            <div class="cell"
-            data-index="8"></div>
-
-        </div>
-
-    </div>
-
-    <div class="quiz-popup"
-    id="quizPopup">
-
-        <div class="quiz-content">
-
-            <h2 id="question"></h2>
-
-            <div class="options">
-
-                <button class="option"></button>
-
-                <button class="option"></button>
-
-                <button class="option"></button>
-
-                <button class="option"></button>
-
-            </div>
-
-            <p id="quizResult"></p>
-
-        </div>
-
-    </div>
-
-    <div class="game-popup"
-    id="gamePopup">
-
-        <div class="popup-content">
-
-            <h2 id="popupTitle"></h2>
-
-            <p id="popupMessage"></p>
-
-            <button id="popupBtn">
-
-                Try Again
-
-            </button>
-
-        </div>
-
-    </div>
-
-    <script src="questions.js"></script>
+    <div id="movieContainer"></div>
 
     <script src="script.js"></script>
 
 </body>
-
 </html>
