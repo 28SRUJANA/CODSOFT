@@ -1,0 +1,398 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+:root{
+    --bg:#0f172a;
+    --sidebar:#111827;
+    --card:#1e293b;
+    --text:#f8fafc;
+    --secondary:#94a3b8;
+    --accent:#3b82f6;
+    --border:#334155;
+}
+
+body.light{
+    --bg:#f1f5f9;
+    --sidebar:#ffffff;
+    --card:#ffffff;
+    --text:#0f172a;
+    --secondary:#64748b;
+    --accent:#2563eb;
+    --border:#dbeafe;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    height:100vh;
+    overflow:hidden;
+}
+
+.app{
+    display:flex;
+    height:100vh;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:280px;
+    background:var(--sidebar);
+    border-right:1px solid var(--border);
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:24px;
+    font-weight:700;
+}
+
+.logo i{
+    color:var(--accent);
+}
+
+.sidebar button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:var(--card);
+    color:var(--text);
+    transition:.3s;
+}
+
+.sidebar button:hover{
+    transform:translateY(-2px);
+    background:var(--accent);
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.stats{
+    margin-top:auto;
+    background:var(--card);
+    padding:15px;
+    border-radius:12px;
+}
+
+.stats h4{
+    margin-bottom:10px;
+}
+
+.stats p{
+    margin:8px 0;
+    color:var(--secondary);
+}
+
+.history-panel{
+    background:var(--card);
+    padding:15px;
+    border-radius:12px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    max-height:320px;
+    overflow:hidden;
+}
+
+.history-panel h4{
+    margin:0;
+    font-size:16px;
+    letter-spacing:0.01em;
+}
+
+.history-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    max-height:240px;
+    overflow-y:auto;
+    color:var(--text);
+}
+
+.history-item{
+    cursor:pointer;
+    padding:12px 14px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.05);
+    color:var(--text);
+    font-size:13px;
+    line-height:1.4;
+    border:1px solid transparent;
+    transition:background .2s,border .2s;
+}
+
+.history-item:hover{
+    background:rgba(255,255,255,0.1);
+    border-color:rgba(255,255,255,0.15);
+}
+
+.history-item.active{
+    background:rgba(59,130,246,0.18);
+    border-color:rgba(59,130,246,0.4);
+}
+
+.history-title{
+    font-size:14px;
+    font-weight:600;
+    color:var(--text);
+}
+
+.history-meta{
+    font-size:12px;
+    color:var(--secondary);
+    margin-top:4px;
+}
+
+/* Chat */
+
+.chat-container{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    height:100vh;
+}
+
+.chat-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+    border-bottom:1px solid var(--border);
+}
+
+.chat-header h2{
+    font-size:24px;
+}
+
+.chat-header select{
+    padding:10px;
+    border-radius:8px;
+    background:var(--card);
+    color:var(--text);
+    border:none;
+}
+
+.chat-box{
+    flex:1;
+    overflow-y:auto;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+/* Messages */
+
+.message{
+    display:flex;
+    gap:12px;
+    max-width:80%;
+    animation:fadeIn .3s ease;
+}
+
+.message.user{
+    align-self:flex-end;
+    flex-direction:row-reverse;
+}
+
+.message.user .text{
+    background:var(--accent);
+}
+
+.message.bot .text{
+    background:var(--card);
+}
+
+.avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:var(--accent);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    flex-shrink:0;
+}
+
+.text{
+    padding:14px 18px;
+    border-radius:16px;
+    line-height:1.6;
+    word-wrap:break-word;
+}
+
+/* Quick Buttons */
+
+.quick-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    padding:15px 20px;
+    border-top:1px solid var(--border);
+}
+
+.quick-btn{
+    padding:10px 15px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    background:var(--card);
+    color:var(--text);
+    transition:.3s;
+}
+
+.quick-btn:hover{
+    background:var(--accent);
+}
+
+/* Input Area */
+
+.typing-area{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:20px;
+    border-top:1px solid var(--border);
+}
+
+.typing-area textarea{
+    flex:1;
+    resize:none;
+    border:none;
+    outline:none;
+    background:var(--card);
+    color:var(--text);
+    padding:15px;
+    border-radius:15px;
+    min-height:55px;
+    max-height:150px;
+    font-size:15px;
+}
+
+.typing-area button{
+    width:55px;
+    height:55px;
+    border:none;
+    border-radius:50%;
+    background:var(--accent);
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.typing-area button:hover{
+    transform:scale(1.05);
+}
+
+/* Typing Animation */
+
+.typing{
+    display:flex;
+    gap:5px;
+    padding:10px;
+}
+
+.typing span{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--secondary);
+    animation:blink 1s infinite;
+}
+
+.typing span:nth-child(2){
+    animation-delay:.2s;
+}
+
+.typing span:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes blink{
+    0%,100%{
+        opacity:.3;
+    }
+    50%{
+        opacity:1;
+    }
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Scrollbar */
+
+.chat-box::-webkit-scrollbar{
+    width:8px;
+}
+
+.chat-box::-webkit-scrollbar-thumb{
+    background:var(--accent);
+    border-radius:10px;
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .chat-container{
+        width:100%;
+    }
+
+    .message{
+        max-width:95%;
+    }
+
+    .quick-actions{
+        overflow-x:auto;
+    }
+}
+
+@media(max-width:500px){
+
+    .chat-header h2{
+        font-size:18px;
+    }
+
+    .typing-area{
+        padding:10px;
+    }
+
+    .typing-area textarea{
+        min-height:50px;
+    }
+
+    .typing-area button{
+        width:50px;
+        height:50px;
+    }
+}

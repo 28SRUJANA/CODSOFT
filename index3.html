@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartBot Assistant</title>
+    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <div class="app">
+
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-robot"></i>
+                <span>SmartBot</span>
+            </div>
+
+            <button id="newChatBtn">
+                <i class="fa-solid fa-plus"></i>
+                New Chat
+            </button>
+
+            <div class="menu">
+                <button id="themeBtn">
+                    <i class="fa-solid fa-moon"></i>
+                    Theme
+                </button>
+
+                <button id="voiceBtn">
+                    <i class="fa-solid fa-microphone"></i>
+                    Voice
+                </button>
+
+                <button id="exportBtn">
+                    <i class="fa-solid fa-download"></i>
+                    Export Chat
+                </button>
+
+                <button id="clearBtn">
+                    <i class="fa-solid fa-trash"></i>
+                    Clear Chat
+                </button>
+
+                <button id="clearAllBtn">
+                    <i class="fa-solid fa-trash-can"></i>
+                    Clear All Conversations
+                </button>
+            </div>
+
+            <div class="history-panel">
+                <h4>Conversations</h4>
+                <div id="historyList" class="history-list">
+                    No conversations yet.
+                </div>
+            </div>
+
+            <div class="stats">
+                <h4>Statistics</h4>
+                <p>Total Messages: <span id="totalMessages">0</span></p>
+                <p>User Messages: <span id="userMessages">0</span></p>
+                <p>Bot Messages: <span id="botMessages">0</span></p>
+            </div>
+        </aside>
+
+        <main class="chat-container">
+
+            <header class="chat-header">
+                <h2>SmartBot Assistant</h2>
+
+                <select id="personality">
+                    <option value="friendly">Friendly</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="professional">Professional</option>
+                    <option value="motivator">Motivator</option>
+                </select>
+            </header>
+
+            <div id="chatBox" class="chat-box"></div>
+
+            <div class="quick-actions">
+                <button class="quick-btn">Fact</button>
+                <button class="quick-btn">Quote</button>
+                <button class="quick-btn">Joke</button>
+                <button class="quick-btn">Time</button>
+                <button class="quick-btn">Date</button>
+                <button class="quick-btn">Help</button>
+            </div>
+
+            <div class="typing-area">
+
+                <textarea
+                    id="userInput"
+                    placeholder="Type your message..."
+                    rows="1"></textarea>
+
+                <button id="micBtn">
+                    <i class="fa-solid fa-microphone"></i>
+                </button>
+
+                <button id="sendBtn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="script3.js"></script>
+</body>
+</html>
